@@ -6,6 +6,7 @@ Created on Tue Sep 17 13:55:17 2019
 """
 
 from flask import Flask
+from textblob import TextBlob
 
 app = Flask(__name__)
 
