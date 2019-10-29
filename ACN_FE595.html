@@ -1,0 +1,196 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Accenture Team MidTerm Project</title>
+  <meta name="description" content="Accenture Team Midterm Project">
+  <meta name="author" content="Jessica Traoinello. Brooke Crowe, Colin Stipcak, Gordon Garisch">
+
+</head>
+<style>
+	form 
+	{
+  		/* Center the form on the page */
+  		margin: 0 auto;
+  		width: 400px;
+  		/* Form outline */
+  		padding: 1em;
+  		border: 1px solid #CCC;
+  		border-radius: 1em;
+	}
+
+	form div + div 
+	{
+  		margin-top: 1em;
+	}
+
+	label 
+	{
+  		/* Uniform size & alignment */
+ 		 display: inline-block;
+  		width: 90px;
+  		text-align: right;
+	}
+
+	input, textarea 
+	{
+  		/* To make sure that all text fields have the same font settings By default, textareas have a monospace font */
+  		font: 1em sans-serif;
+
+  		/* Uniform text field size */
+ 		 width: 300px;
+  		box-sizing: border-box;
+
+  		/* Match form field borders */
+  		border: 1px solid #999;
+	}
+
+	input:focus, textarea:focus 
+	{
+  		/* Additional highlight for focused elements */
+  		border-color: #000;
+	}
+
+	textarea 
+	{
+  		/* Align multiline text fields with their labels */
+ 		 vertical-align: top;
+
+  		/* Provide space to type some text */
+  		height: 5em;
+	}
+
+	.button 
+	{
+  		/* Align buttons with the text fields */
+ 		 padding-left: 90px; /* same size as the label elements */
+	}
+
+	button 
+	{
+ 		 /* This extra margin represent roughly the same space as the space between the labels and their text fields */
+  		margin-left: .5em;
+	}
+</style>
+<body>
+
+
+<br>
+<p>
+
+<center><h2> Provide a collection of words or a sentence and we will return the PoL</h2></center>
+<form action="/1" method="post">
+  <div>
+    <label for="Please Enter Text">Test Sentence:</label>
+    <input type="text" id="input_data" name="nput_data">
+  </div>
+  <div class="button">
+  <button type="submit">Run Service 1</button>
+</div>
+</form>
+
+<br>
+<p>
+<center><h2> Provide a collection of words or a sentence and we will return the subjectivity score</h2> </center>
+<form action="/2" method="post">
+  <div>
+    <label for="Please Enter Text">Test Sentence:</label>
+    <input type="text" id="input_data" name="nput_data">
+  </div>
+   <div class="button">
+  <button type="submit">Run Service 2</button>
+</div>
+</form>
+
+<br>
+<p>
+<center><h2> Provide two words and we will return the similarity score </h2> </center>
+<form action="/3" method="post">
+  <div>
+    <label for="Please Word 1">Word 1:</label>
+    <input type="text" id="pos_word_1" name="pos_word_1">
+  </div>
+  <div>
+    <label for="Please Enter Text">Word 2:</label>
+    <input type="text" id="pos_word_2" name="pos_word_2">
+  </div>
+  <div class="button">
+  <button type="submit">Get Similarity Score</button>
+</div>
+</form>
+
+<br>
+<p>
+<center><h2> Provide a collection of words or a sentence and we will return the noun phrases</h2> </center>
+<form action="/4" method="post">
+  <div>
+    <label for="Please Enter Text">Test Sentence:</label>
+    <input type="text" id="input_data" name="nput_data">
+  </div>
+  <div class="button">
+  <button type="submit">Run Service 4</button>
+</div>
+</form>
+
+<br>
+<p>
+<center><h2> Provide a collection of words or a sentence and we will return the word and phrase frequencies</h2> </center>
+<form action="/5" method="post">
+  <div>
+    <label for="Please Enter Text">Test Sentence:</label>
+    <input type="text" id="input_data" name="nput_data">
+  </div>
+  <div class="button">
+  <button type="submit">Run Service 5</button>
+</div>
+</form>
+
+<br>
+<p>
+<center><h2> Provide a collection of words or a sentence and we will return the language it is written in</h2> </center>
+<form action="/6" method="post">
+  <div>
+    <label for="Please Enter Text">Test Sentence:</label>
+    <input type="text" id="input_data" name="nput_data">
+  </div>
+  <div class="button">
+  <button type="submit">Run Service 6</button>
+</div>
+</form>
+
+<br>
+<p>
+<center><h2> Provide a collection of words or a sentence and we will translate to French</h2> </center>
+<form action="/7" method="post">
+  <div>
+    <label for="Please Enter Text">Test Sentence:</label>
+    <input type="text" id="input_data" name="nput_data">
+  </div>
+  <div class="button">
+  <button type="submit">Run Service 7</button>
+</div>
+</form>
+
+<br>
+<p>
+<center><h2> click the button and we will return the service documentation</h2> </center>
+<form action="/7" method="post">
+  <div>
+    <label for="Please Enter Text">Thank you for using our services!</label>
+  </div>
+  <div class="button">
+  <button type="submit">Get documentation</button>
+</div>
+</form>
+
+
+
+
+
+
+
+
+</body>
+</html>
