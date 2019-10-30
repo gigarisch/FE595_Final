@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route("/test/<input_text>", methods=["GET"])
 def tester(input_text):
     a=TextBlob(input_text).sentiment[0]
-    return a
+    return print(a)
 
 @app.route("/polarity/<input_text>", methods=["GET"])
 def get_polarity(input_text):
