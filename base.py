@@ -24,7 +24,7 @@ def get_subjectivity(input_text):
 
 @app.route("/PoS/<string:input_text>", methods=["GET"])
 def get_PoS(input_text):
-    return str(TextBlob(input_text).pos_tags)
+    return "<br>".join([str(x) for x in TextBlob(input_text).pos_tags])
 
 @app.route("/4", methods=["GET"])
 def service4():
