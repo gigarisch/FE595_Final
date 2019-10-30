@@ -10,25 +10,25 @@ from textblob import TextBlob
 
 app = Flask(__name__)
 
-@app.route("/test/<input_text>", methods=["GET"])
+@app.route("/test/<string:input_text>", methods=["GET"])
 def tester(input_text):
-    return input_text
+    return str(TextBlob(input_text).polarity)
 
-@app.route("/polarity/<input_text>", methods=["GET"])
+@app.route("/polarity/<string:input_text>", methods=["GET"])
 def get_polarity(input_text):
-    return TextBlob(input_text).sentiment[0]
+    return str(TextBlob(input_text).polarity)
 
-@app.route("/subjectivity/<input_text>", methods=["GET"])
+@app.route("/subjectivity/<string:input_text>", methods=["GET"])
 def get_subjectivity(input_text):
-    return TextBlob(input_text).sentiment[0]
+    return str(TextBlob(input_text).subjectivity)
 
-@app.route("/PoS/<input_text>", methods=["GET"])
+@app.route("/PoS/<string:input_text>", methods=["GET"])
 def get_PoS(input_text):
-    return TextBlob(input_text).tags
+    return "<br>".join([str(x) for x in TextBlob(input_text).pos_tags])
 
-@app.route("/4", methods=["GET"])
-def service4():
-    return "This is a placeholder for service 4: Textblob Noun-Phrases G"
+@app.route("/noun_phrases/<string:input_text>", methods=["GET"])
+def get_NP(input_text):
+    return "<br>".join(TextBlob(input_text).noun_phrases)
 
 @app.route("/5", methods=["GET"])
 def service5():
