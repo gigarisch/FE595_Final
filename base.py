@@ -10,17 +10,21 @@ from textblob import TextBlob
 
 app = Flask(__name__)
 
-@app.route("/1", methods=["GET"])
-def service1():
-    return "This is a placeholder for service 1: Textblob pol G" 
+@app.route("/test/<input_text>", methods=["GET"])
+def tester(input_text):
+    return input_text
 
-@app.route("/2", methods=["GET"])
-def service2():
-    return "This is a placeholder for service 2: Textblob subjectivity G"
+@app.route("/polarity/<input_text>", methods=["GET"])
+def get_polarity(input_text):
+    return TextBlob(input_text).sentiment[0]
 
-@app.route("/3", methods=["GET"])
-def service3():
-    return "This is a placeholder for service 3: Textblob: POS G"
+@app.route("/subjectivity/<input_text>", methods=["GET"])
+def get_subjectivity(input_text):
+    return TextBlob(input_text).sentiment[0]
+
+@app.route("/PoS/<input_text>", methods=["GET"])
+def get_PoS(input_text):
+    return TextBlob(input_text).tags
 
 @app.route("/4", methods=["GET"])
 def service4():
