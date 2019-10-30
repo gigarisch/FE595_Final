@@ -10,10 +10,10 @@ from textblob import TextBlob
 
 app = Flask(__name__)
 
-@app.route("/test/<input_text>", methods=["GET"])
+@app.route("/test/<string:input_text>", methods=["GET"])
 def tester(input_text):
-    a=TextBlob(input_text).polarity
-    return str(a)
+    #a=TextBlob(input_text).polarity
+    return str(TextBlob(input_text).polarity)
 
 @app.route("/polarity/<input_text>", methods=["GET"])
 def get_polarity(input_text):
