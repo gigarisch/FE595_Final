@@ -12,20 +12,19 @@ app = Flask(__name__)
 
 @app.route("/test/<string:input_text>", methods=["GET"])
 def tester(input_text):
-    #a=TextBlob(input_text).polarity
-    return TextBlob(input_text).polarity
+    return str(TextBlob(input_text).polarity)
 
-@app.route("/polarity/<input_text>", methods=["GET"])
+@app.route("/polarity/<string:input_text>", methods=["GET"])
 def get_polarity(input_text):
-    return TextBlob(input_text).sentiment[0]
+    return str(TextBlob(input_text).polarity)
 
-@app.route("/subjectivity/<input_text>", methods=["GET"])
+@app.route("/subjectivity/<string:input_text>", methods=["GET"])
 def get_subjectivity(input_text):
-    return TextBlob(input_text).sentiment[0]
+    return str(TextBlob(input_text).subjectivity)
 
-@app.route("/PoS/<input_text>", methods=["GET"])
+@app.route("/PoS/<string:input_text>", methods=["GET"])
 def get_PoS(input_text):
-    return TextBlob(input_text).tags
+    return str(TextBlob(input_text).pos_tags)
 
 @app.route("/4", methods=["GET"])
 def service4():
