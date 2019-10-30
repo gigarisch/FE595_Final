@@ -7,6 +7,7 @@ Created on Tue Sep 17 13:55:17 2019
 
 from flask import Flask
 from textblob import TextBlob
+from variables import PoS_dict
 
 app = Flask(__name__)
 
@@ -24,7 +25,8 @@ def get_subjectivity(input_text):
 
 @app.route("/PoS/<string:input_text>", methods=["GET"])
 def get_PoS(input_text):
-    return "<br>".join([str(x) for x in TextBlob(input_text).pos_tags])
+    return "<br>".join([str((x[0],"{}: {}".format(x[1],PoS_dict.get(x[1])))) 
+                        for x in TextBlob(input_text).pos_tags])
 
 @app.route("/noun_phrases/<string:input_text>", methods=["GET"])
 def get_NP(input_text):
