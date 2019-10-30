@@ -26,9 +26,9 @@ def get_subjectivity(input_text):
 def get_PoS(input_text):
     return "<br>".join([str(x) for x in TextBlob(input_text).pos_tags])
 
-@app.route("/4", methods=["GET"])
-def service4():
-    return "This is a placeholder for service 4: Textblob Noun-Phrases G"
+@app.route("/noun_phrases/<string:input_text>", methods=["GET"])
+def get_NP(input_text):
+    return "<br>".join(TextBlob(input_text).noun_phrases)
 
 @app.route("/5", methods=["GET"])
 def service5():
