@@ -5,11 +5,15 @@ Created on Tue Sep 17 13:55:17 2019
 @author: gordon.garisch
 """
 
-from flask import Flask
+from flask import Flask, render_template
 from textblob import TextBlob
 from variables import PoS_dict
 
 app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("ACN_FE595.html")
 
 @app.route("/test/<string:input_text>", methods=["GET"])
 def tester(input_text):
