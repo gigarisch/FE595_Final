@@ -23,8 +23,8 @@ def get_NP(input_text):
     return "<br>".join(TextBlob(input_text).noun_phrases)
 
 
-def service5():
-    return "This is a placeholder for service 5: Textblob: Word and Phrase Frequencies / Stop Words C"
+def get_spellcheck(input_text):
+    return suggest(TextBlob(input_text).string)
 
 
 def get_detect_language(input_text):
