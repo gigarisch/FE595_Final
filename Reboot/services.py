@@ -27,12 +27,12 @@ def service5():
     return "This is a placeholder for service 5: Textblob: Word and Phrase Frequencies / Stop Words C"
 
 
-def service6():
-    return "This is a placeholder for service 6: Textblob: Language Detenction C"
+def detect_language(input_text):
+    return str(TextBlob(input_text)).detect_language()
 
 
-def service7():
-    return "This is a placeholder for service 7: Textblob: Translating C"
+def translate(input_text):
+    return str(TextBlob(input_text)).translate(to='es')
 
 def service8():
     return "This is a placeholder for service 8: user documentation C"
