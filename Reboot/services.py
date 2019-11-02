@@ -28,11 +28,11 @@ def service5():
 
 
 def get_detect_language(input_text):
-    return str(TextBlob(input_text)).detect_language
+    return str(TextBlob(input_text).detect_language)
 
 
 def get_translate(input_text):
-    return str(TextBlob(input_text)).translate(to='fr')
+    return str(TextBlob(input_text).translate(to='fr'))
 
 def service8():
     return "This is a placeholder for service 8: user documentation C"
