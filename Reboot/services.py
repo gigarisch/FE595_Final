@@ -28,7 +28,7 @@ def get_spellcheck(input_text):
 
 
 def get_detect_language(input_text):
-    return str(TextBlob(input_text).detect_language)
+    return str(TextBlob(input_text).detect_language())
 
 
 def get_translate(input_text):
