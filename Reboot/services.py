@@ -27,11 +27,11 @@ def service5():
     return "This is a placeholder for service 5: Textblob: Word and Phrase Frequencies / Stop Words C"
 
 
-def detect_language(input_text):
+def get_detect_language(input_text):
     return str(TextBlob(input_text)).detect_language
 
 
-def translate(input_text):
+def get_translate(input_text):
     return str(TextBlob(input_text)).translate(to='fr')
 
 def service8():
