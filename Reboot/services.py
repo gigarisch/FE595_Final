@@ -32,7 +32,7 @@ def detect_language(input_text):
 
 
 def translate(input_text):
-    return str(TextBlob(input_text)).translate(to='es')
+    return str(TextBlob(input_text)).translate(to='fr')
 
 def service8():
     return "This is a placeholder for service 8: user documentation C"
