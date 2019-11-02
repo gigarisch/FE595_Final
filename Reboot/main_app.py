@@ -50,7 +50,7 @@ def home():
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
-                    '''.format(result=polarity_result)
+                    '''.format(polarity_result=polarity_result, polarity2_result=polarity2_result, subjectivity_result=subjectivity_result, PoS_Result = PoS_Result, NP_Result=NP_Result, service5_result = service5_result, service6_result = service6_result, service7_result = service7_result, service8_result = service8_result  )
     return '''
         <html>
             <body>
