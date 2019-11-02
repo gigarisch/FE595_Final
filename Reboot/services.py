@@ -28,7 +28,7 @@ def service5():
 
 
 def detect_language(input_text):
-    return str(TextBlob(input_text)).detect_language()
+    return str(TextBlob(input_text)).detect_language
 
 
 def translate(input_text):
