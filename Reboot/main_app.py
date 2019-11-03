@@ -1,5 +1,5 @@
 from flask import Flask, request
-from services import tester, get_polarity, get_subjectivity, get_NP, service5, service6, service7, service8 ,get_PoS
+from services import tester, get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, get_translate, service8
 
 
 app = Flask(__name__)
@@ -30,9 +30,9 @@ def home():
             subjectivity_result = get_subjectivity(Sentence)
             PoS_Result = get_PoS(Sentence)
             NP_Result = get_NP(Sentence)
-            service5_result = service5()
-            service6_result = service6()
-            service7_result = service7()
+            spellcheck_result = get_spellcheck(Sentence)
+            language_result = get_detect_language(Sentence)
+            translated_result = get_translate(Sentence)
             service8_result = service8()
 
             return '''
@@ -43,14 +43,14 @@ def home():
                                 <p>The Subjectivity Score is: {subjectivity_result}</p>
                                 <p>The PoS Value is: {PoS_Result}</p>
                                 <p>The Noun Phrases are: {NP_Result}</p>
-                                <p>The Word and Phrase Frequencies are: {service5_result}</p>
-                                <p>The Language used is: {service6_result}</p>
-                                <p>The In French that is: {service7_result}</p>
+                                <p>The Spellcheck results are: {spellcheck_result}</p>
+                                <p>The Language used is: {language_result}</p>
+                                <p>The In French that is: {translated_result}</p>
                                 <p>The Documentation is: {service8_result}</p>
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
-                    '''.format(polarity_result=polarity_result, polarity2_result=polarity2_result, subjectivity_result=subjectivity_result, PoS_Result = PoS_Result, NP_Result=NP_Result, service5_result = service5_result, service6_result = service6_result, service7_result = service7_result, service8_result = service8_result  )
+                    '''.format(polarity_result=polarity_result, polarity2_result=polarity2_result, subjectivity_result=subjectivity_result, PoS_Result = PoS_Result, NP_Result=NP_Result, spellcheck_result = spellcheck_result, language_result = language_result, translated_result = translated_result, service8_result = service8_result  )
     return '''
         <html>
             <body>

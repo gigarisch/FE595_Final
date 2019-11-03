@@ -27,6 +27,8 @@ def get_spellcheck(input_text):
     return str(TextBlob(input_text).correct())
 
 
+
+
 def get_detect_language(input_text):
     return str(TextBlob(input_text).detect_language())
 
