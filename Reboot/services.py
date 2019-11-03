@@ -23,8 +23,8 @@ def get_NP(input_text):
     return "<br>".join(TextBlob(input_text).noun_phrases)
 
 
-def get_spellcheck(input_text):
-    return suggest(TextBlob(input_text).string)
+def spellcheck(input_text):
+    return str(TextBlob(input_text).correct())
 
 
 def get_detect_language(input_text):
