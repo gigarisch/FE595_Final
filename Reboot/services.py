@@ -23,7 +23,7 @@ def get_NP(input_text):
     return "<br>".join(TextBlob(input_text).noun_phrases)
 
 
-def spellcheck(input_text):
+def get_spellcheck(input_text):
     return str(TextBlob(input_text).correct())
 
 
