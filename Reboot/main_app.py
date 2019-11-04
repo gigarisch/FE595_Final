@@ -31,6 +31,8 @@ def home():
             return '''
                         <html>
                             <body>
+                                <h1> FE595 Midterm Project </h1><p>
+                                <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak </h2><p>
                                 <p>The Polarity Score is: {polarity2_result}</p>
                                 <p>The Subjectivity Score is: {subjectivity_result}</p>
                                 <p>The PoS Value is: {PoS_Result}</p>
@@ -47,9 +49,13 @@ def home():
     return '''
         <html>
             <body>
-                <p> Enter your values: </p> <br>
+                <h1> FE595 Midterm Project </h1><p>
+                <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak </h2><p>
+                <p> <h2>Enter your values: </h2></p> <br>
                 <form method="post" action=".">
-                    <p>Please enter a sentence or collection of words <input name = "Sentence" /></p>
+                    <p>Please enter a sentence or a single word <input name = "Sentence" size = "130" /></p>
+                    <i> If a single word is provided only PoS, Spellcheck, language, traslation, stemming and definition will function </i>
+                    <i> If a sentence is provided definition will not be returned</i>
                     <br>
                     <p><input type = "Submit" value = "Run the Services" /></p>
                     

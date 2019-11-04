@@ -34,7 +34,11 @@ def get_detect_language(input_text):
 
 
 def get_translate(input_text):
-    return str(TextBlob(input_text).translate(to='fr'))
+    try:
+        translated = TextBlob(input_text).translate(to='fr')
+    except:
+        translated = ("No translation avaiable")
+    return str(translated)
 
 def get_definition(input_text):
     return str(Word(input_text).definitions)
