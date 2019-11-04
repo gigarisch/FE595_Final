@@ -1,5 +1,5 @@
 from flask import Flask, request
-from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, get_translate, get_stems
+from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, get_translate, get_stems, get_definition
 
 
 app = Flask(__name__)
@@ -26,6 +26,7 @@ def home():
             language_result = get_detect_language(Sentence)
             translated_result = get_translate(Sentence)
             stem_result = get_stems(Sentence)
+            definition_result = get_definition(Sentence)
 
             return '''
                         <html>
@@ -38,10 +39,11 @@ def home():
                                 <p>The Language used is: {language_result}</p>
                                 <p>The In French that is: {translated_result}</p>
                                 <p>The stemmed words are: {stem_result}</p>
+                                <p>The definitions are: {definition_result}</p>
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
-                    '''.format(polarity2_result=polarity2_result, subjectivity_result=subjectivity_result, PoS_Result = PoS_Result, NP_Result=NP_Result, spellcheck_result = spellcheck_result, language_result = language_result, translated_result = translated_result, stem_result = stem_result  )
+                    '''.format(polarity2_result=polarity2_result, subjectivity_result=subjectivity_result, PoS_Result = PoS_Result, NP_Result=NP_Result, spellcheck_result = spellcheck_result, language_result = language_result, translated_result = translated_result, stem_result = stem_result, definition_result = definition_result  )
     return '''
         <html>
             <body>
