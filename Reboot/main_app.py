@@ -60,7 +60,7 @@ def home():
                     <p><input type = "Submit" value = "Run Test" /></p>
                     
                 </form>
-               <a href = "documentation.html"> Link to Documentation </a> 
+               <a href = "http://jesstraining.com/documentation.html"> Link to Documentation </a> 
             </body>
         </html>
     '''.format(errors=errors)
