@@ -1,10 +1,6 @@
 from textblob import TextBlob
 from variables import PoS_dict
 
-def tester(input_text):
-    return str(TextBlob(input_text).polarity)
-
-
 def get_polarity(input_text):
     return str(TextBlob(input_text).polarity)
 
