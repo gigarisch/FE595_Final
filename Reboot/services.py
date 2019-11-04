@@ -36,3 +36,12 @@ def get_translate(input_text):
 
 def get_definition(input_text):
     return str(Word(input_text).definitions)
+
+def get_stems(input_text):
+    words = word_tokenize(input_text)
+    ps = PorterStemmer()
+    retVal = " "
+    for w in words:
+        rootWord = ps.stem(w)
+        retVal = retVal + " " + rootWord
+    return str(retVal)
