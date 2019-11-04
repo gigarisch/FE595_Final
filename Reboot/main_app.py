@@ -58,8 +58,9 @@ def home():
                     <p>Enter a Single Word<input name = "Word1" /></p>
                     <p>Enter a Another Single Word<input name = "Word2" /></p>
                     <p><input type = "Submit" value = "Run Test" /></p>
-                    <a href = "/home/ec2-user/FE595_Midterm/Reboot/documentation.html"> Link to Documentation </a>
+                    
                 </form>
+               <a href = "documentation.html"> Link to Documentation </a> 
             </body>
         </html>
     '''.format(errors=errors)
