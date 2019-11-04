@@ -2,6 +2,8 @@ from textblob import TextBlob
 from variables import PoS_dict
 from textblob import Word
 from textblob.wordnet import VERB
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
 
 def get_polarity(input_text):
     return str(TextBlob(input_text).polarity)
