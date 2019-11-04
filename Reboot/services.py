@@ -1,5 +1,7 @@
 from textblob import TextBlob
 from variables import PoS_dict
+from textblob import Word
+from textblob.wordnet import VERB
 
 def get_polarity(input_text):
     return str(TextBlob(input_text).polarity)
@@ -32,5 +34,5 @@ def get_detect_language(input_text):
 def get_translate(input_text):
     return str(TextBlob(input_text).translate(to='fr'))
 
-def service8():
-    return "This is a placeholder for service 8: user documentation C"
+def get_definition(input_text):
+    return str(Word(input_text).definitions)
