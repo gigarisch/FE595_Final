@@ -1,7 +1,7 @@
 from textblob import TextBlob
 from variables import PoS_dict
-from nltk.stem import PorterStemmer
-from nltk.tokenize import sent_tokenize, word_tokenize
+from textblob import Word
+from textblob.wordnet import VERB
 
 def get_polarity(input_text):
     return str(TextBlob(input_text).polarity)
@@ -34,13 +34,5 @@ def get_detect_language(input_text):
 def get_translate(input_text):
     return str(TextBlob(input_text).translate(to='fr'))
 
-def get_stems(input_text):
-    words = word_tokenize(input_text)
-    ps = PorterStemmer()
-    retVal = " "
-    for w in words:
-        rootWord = ps.stem(w)
-        retVal = retVal + " " + rootWord
-    return str(retVal)
-
-
+def get_definition(input_text):
+    return str(Word(input_text).definitions)
