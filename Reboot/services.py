@@ -1,5 +1,7 @@
 from textblob import TextBlob
 from variables import PoS_dict
+from nltk.stem import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 def get_polarity(input_text):
     return str(TextBlob(input_text).polarity)
@@ -32,5 +34,13 @@ def get_detect_language(input_text):
 def get_translate(input_text):
     return str(TextBlob(input_text).translate(to='fr'))
 
-def service8():
-    return "This is a placeholder for service 8: user documentation C"
+def get_stems(input_text):
+    words = word_tokenize(input_text)
+    ps = PorterStemmer()
+    retVal = " "
+    for w in words:
+        rootWord = ps.stem(w)
+        retVal = retVal + " " + rootWord
+    return str(retVal)
+
+

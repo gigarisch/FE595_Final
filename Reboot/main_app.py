@@ -1,5 +1,5 @@
 from flask import Flask, request
-from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, get_translate, service8
+from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, get_translate, get_stems
 
 
 app = Flask(__name__)
@@ -16,15 +16,8 @@ def home():
             Sentence = str(request.form["Sentence"])
         except:
             errors += "<p>{!r} is invalid.</p>\n".format(request.form["Sentence"])
-        try:
-            Word1 = str(request.form["Word1"])
-        except:
-            errors += "<p>{!r} is invalid.</p>\n".format(request.form["Word1"])
-        try:
-            Word2 = str(request.form["Word2"])
-        except:
-            errors += "<p>{!r} is invalid.</p>\n".format(request.form["Word2"])
-        if Sentence is not None or (Word1 is not None and Word2 is not None):
+
+        if Sentence is not None:
             polarity2_result = get_polarity(Sentence)
             subjectivity_result = get_subjectivity(Sentence)
             PoS_Result = get_PoS(Sentence)
@@ -32,7 +25,7 @@ def home():
             spellcheck_result = get_spellcheck(Sentence)
             language_result = get_detect_language(Sentence)
             translated_result = get_translate(Sentence)
-            service8_result = service8()
+            stem_result = get_stems(Sentence)
 
             return '''
                         <html>
@@ -44,20 +37,19 @@ def home():
                                 <p>The Spellcheck results are: {spellcheck_result}</p>
                                 <p>The Language used is: {language_result}</p>
                                 <p>The In French that is: {translated_result}</p>
-                                <p>The Documentation is: {service8_result}</p>
+                                <p>The stemmed words are: {stem_result}</p>
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
-                    '''.format(polarity2_result=polarity2_result, subjectivity_result=subjectivity_result, PoS_Result = PoS_Result, NP_Result=NP_Result, spellcheck_result = spellcheck_result, language_result = language_result, translated_result = translated_result, service8_result = service8_result  )
+                    '''.format(polarity2_result=polarity2_result, subjectivity_result=subjectivity_result, PoS_Result = PoS_Result, NP_Result=NP_Result, spellcheck_result = spellcheck_result, language_result = language_result, translated_result = translated_result, stem_result = stem_result  )
     return '''
         <html>
             <body>
-                <p> Enter your values: </p>
+                <p> Enter your values: </p> <br>
                 <form method="post" action=".">
-                    <p>Enter a sentence or collection of words <input name = "Sentence" /></p>
-                    <p>Enter a Single Word<input name = "Word1" /></p>
-                    <p>Enter a Another Single Word<input name = "Word2" /></p>
-                    <p><input type = "Submit" value = "Run Test" /></p>
+                    <p>Please enter a sentence or collection of words <input name = "Sentence" /></p>
+                    <br>
+                    <p><input type = "Submit" value = "Run the Services" /></p>
                     
                 </form>
                <a href = "http://jesstraining.com/documentation.html"> Link to Documentation </a> 
