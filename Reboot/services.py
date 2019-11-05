@@ -41,7 +41,8 @@ def get_translate(input_text):
     return str(translated)
 
 def get_definition(input_text):
-    return str(Word(input_text).definitions)
+    #return str(Word(input_text).definitions)
+    return "<br>".join(["{}: {}".format(x,Word(x).definitions) for x in a.tokens])
 
 def get_stems(input_text):
     words = word_tokenize(input_text)
