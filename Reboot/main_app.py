@@ -5,6 +5,10 @@ from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellc
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+@app.errorhandler(404)
+    def not_found(error):
+        return 'The page you requested could not be found', 404
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     errors = ""
