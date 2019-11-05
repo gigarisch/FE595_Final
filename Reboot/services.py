@@ -42,9 +42,9 @@ def get_translate(input_text):
 
 def get_definition(input_text):
     #return str(Word(input_text).definitions)
-    return "<br>".join(["{}: {}".format(x,"<br>".join(Word(x).definitions)) 
+    return "<br>".join(["{}<br>: <pre>{}</pre>".format(x,"<br>".join(Word(x).definitions)) 
                         if Word(x).definitions 
-                        else "{}: {}".format(x,"Not Available") 
+                        else "{}<br>: <pre>{}</pre>".format(x,"Not Available") 
                         for x in TextBlob(input_text).tokens])
 
 def get_stems(input_text):
