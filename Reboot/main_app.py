@@ -45,7 +45,7 @@ def home():
                                 <p>The Language used is: {language_result}</p>
                                 <p>The In French that is: {translated_result}</p>
                                 <p>The stemmed words are: {stem_result}</p>
-                                <p>The definitions are: {definition_result}</p>
+                                <p>The definitions are: <p> {definition_result}</p>
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
@@ -57,9 +57,7 @@ def home():
                 <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak </h2><p>
                 <p> <h2>Enter your values: </h2></p> <br>
                 <form method="post" action=".">
-                    <p>Please enter a sentence or a single word <input name = "Sentence" size = "130" /></p>
-                    <i> If a single word is provided only PoS, Spellcheck, language, traslation, stemming and definition will function </i>
-                    <i> If a sentence is provided definition will not be returned</i>
+                    <p>Please enter a sentence or collection of words<input name = "Sentence" size = "130" /></p>
                     <br>
                     <p><input type = "Submit" value = "Run the Services" /></p>
                     
