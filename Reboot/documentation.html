@@ -44,19 +44,25 @@
     <br><p>
 <a name = 'Spellcheck'>
     <h2>Spellcheck Documentation</h2>
-    **Insert Text here**
+    This function attempts to correct the spelling based on a set of rules. <br>
+    This is accomplished by using the textblob correct function<br>
+    <a href="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob.correcte" Link to TextBlob correct</a> <br>
+    Function Execution: <i>TextBlob(input_text).correct()</i>
 </a>
     <br><p>
 <a name = 'GetLanguage'>
     <h2>Language Detection Documentation</h2>
-    **Insert Text here**
+    This function indicates what language the text is. <br>
+    This is accomplished by using the textblob detect_languange function<br>
+    <a href="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob.detect_language" Link to TextBlob detect_languange</a> <br>
+    Function Execution: <i>TextBlob(input_text).detect_language()</i>
 </a>
     <br><p>
 <a name = 'Translate'>
     <h2>Translation Documentation</h2>
     This function performs translation to the language of choice, in this implementation it is French <br>
-    If a translation is unavailable the following message is displayed "No translation avaiable"
-    This is accomplished by using the NLTP Translate function<br>
+    If a translation is unavailable, the following message is displayed "No translation available"
+    This is accomplished by using the textblob Translate function<br>
     <a href ="https://textblob.readthedocs.io/en/dev/quickstart.html#translation-and-language-detection"> Link to TextBlob Translation and Language Detection</a> <br>
     Function Execution: <i>TextBlob(input_text).translate(to='fr')</i>
 
@@ -64,12 +70,19 @@
     <br><p>
 <a name = 'Stemming'>
     <h2>Stemming Documentation</h2>
-    **Insert Text here**
+   This function stems the words of all of the words entered <br>
+    This is accomplished by using the textblob stem function<br>
+    <a href ="https://textblob.readthedocs.io/en/dev/_modules/textblob/blob.html#Word.stem"> Link to TextBlob stem </a> <br>
+    Function Execution: <i>PorterStemmer.stem(input_text)</i>
 </a>
     <br><p>
 <a name = 'Definitions'>
     <h2>Definition Documentation</h2>
-    **Insert Text here**
+    This function defines each word of the sentence entered <br>
+    If a definition is unavailable, the following message is displayed "No translation available"
+    This is accomplished by using the textblob defininition function<br>
+    <a href ="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.Word.define"> Link to TextBlob Definition </a> <br>
+    Function Execution: <i>(Word(x).definitions)</i>
 
 
 
