@@ -1,3 +1,0 @@
-Hi All-
-As I started to work through the HTML I needed to restructure the project files, but did not want to confused everyone.
-I moved all the existing code into the new files in this directory

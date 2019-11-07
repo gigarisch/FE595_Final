@@ -1,13 +1,15 @@
 from flask import Flask, request
-from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, get_translate, get_stems, get_definition
-
+from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, \
+    get_translate, get_stems, get_definition
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+
 @app.errorhandler(404)
 def not_found(error):
     return 'The page you requested could not be found.'
+
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -49,7 +51,10 @@ def home():
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
-                    '''.format(polarity2_result=polarity2_result, subjectivity_result=subjectivity_result, PoS_Result = PoS_Result, NP_Result=NP_Result, spellcheck_result = spellcheck_result, language_result = language_result, translated_result = translated_result, stem_result = stem_result, definition_result = definition_result  )
+                    '''.format(polarity2_result=polarity2_result, subjectivity_result=subjectivity_result,
+                               PoS_Result=PoS_Result, NP_Result=NP_Result, spellcheck_result=spellcheck_result,
+                               language_result=language_result, translated_result=translated_result,
+                               stem_result=stem_result, definition_result=definition_result)
     return '''
         <html>
             <body>
@@ -66,6 +71,7 @@ def home():
             </body>
         </html>
     '''.format(errors=errors)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
