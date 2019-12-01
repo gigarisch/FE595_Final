@@ -62,9 +62,19 @@ def home():
                 <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak </h2><p>
                 <p> <h2>Enter your values: </h2></p> <br>
                 <form method="post" action=".">
-                    <p>Please enter a sentence or collection of words<input name = "Sentence" size = "130" /></p>
+                    <p>Please enter a sentence or collection of words (To be removed) <input name = "Sentence" size = "130" /></p>
                     <br>
-                    <p><input type = "Submit" value = "Run the Services" /></p>
+                    <p>Please enter a Twitter Handle <input name = "THandle" size = "20" /></p>
+                    <br>
+                    <p>Please enter a OAUTH Consumer Key <input name = "OAUTH_CC" size = "80" /></p>
+                    <br>
+                    <p>Please enter a OAUTH Consumer Secret<input name = "OAUTH_CS" size = "80" /></p>
+                    <br>
+                    <p>Please enter a Access Token <input name = "Access_Token" size = "80" /></p>
+                    <br>
+                    <p>Please enter a Access Token Secret <input name = "Access_Token_Secret" size = "80" /></p>
+                    <br>
+                    <p><input type = "Submit" value = "Run the Application" /></p>
                     
                 </form>
                <a href = "http://jesstraining.com/documentation.html"> Link to Documentation </a> 
