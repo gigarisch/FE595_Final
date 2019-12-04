@@ -6,7 +6,7 @@ import pandas as pd
 api = tw.API(auth, wait_on_rate_limit=True)
 
 #Pull last 200 tweets
-tweets = api.user_timeline(screen_name='@screen_name',count=200)
+tweets = api.user_timeline(screen_name='@realDonaldTrump',count=500)
 
 ############Various Formats of Data############################
 
@@ -16,7 +16,8 @@ tmp = []
 # tweet id, date/time, text 
 tweets_for_csv = [tweet.text for tweet in tweets]  # CSV file created  
 for j in tweets_for_csv:
-    # Appending tweets to the empty array tmp 
+    # Appending tweets to the empty array tmp
+    print(j)
     tmp.append(j)
 
     # Printing the tweets 
