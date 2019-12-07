@@ -14,7 +14,7 @@ tweets = api.user_timeline(screen_name='@realDonaldTrump',count=500)
 tmp = []
 
 # tweet id, date/time, text 
-tweets_for_csv = [tweet.text for tweet in tweets]  # CSV file created  
+tweets_for_csv = [tweet.full_text for tweet in tweets]  # CSV file created  
 for j in tweets_for_csv:
     # Appending tweets to the empty array tmp
     print(j)
@@ -24,10 +24,10 @@ for j in tweets_for_csv:
 print(tmp) 
 
 #Tweet text in a string
-all_tweets = [tweet.text for tweet in tweets]
+all_tweets = [tweet.full_text for tweet in tweets]
 
 #Create dataframe for ID, location, text and timestamp
-frame= [[tweet.user.screen_name, tweet.user.location, tweet.text,tweet.created_at]for tweet in tweets]
+frame= [[tweet.user.screen_name, tweet.user.location, tweet.full_text,tweet.created_at]for tweet in tweets]
 
 tweet_frame = pd.DataFrame(data=frame,
                            columns=['user',"location","text","created_at"])
