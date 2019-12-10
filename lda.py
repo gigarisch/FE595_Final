@@ -30,4 +30,5 @@ def LDA(tweets,num_topics=4):
                                                per_word_topics=True)
 
     lda_model.save("saved/saved_lda_model")
+
     return lda_model, corpus

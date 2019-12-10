@@ -28,4 +28,5 @@ def create_wordcloud(topics):
         plt.gca().axis('off')
     
     plt.tight_layout()
+    plt.savefig('saved/wordcloud.jpg')
     plt.show()

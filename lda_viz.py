@@ -13,4 +13,5 @@ from test_data import test
 lda_model, corpus = LDA(test)
 
 vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary=lda_model.id2word)
+pyLDAvis.save_html(vis,"saved/lda_vis.html")
 print(vis)
