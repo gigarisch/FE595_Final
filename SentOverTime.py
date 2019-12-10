@@ -19,6 +19,8 @@ def SentimentOverTime(tweets):
     YM = data['created_at'].str[0:8]
     D = data['created_at'].str[8:10]
 
+    data['date'] = 2019-12-10
+    
     for i in D.index:
         D[i] = D[i].lstrip('0')
         data['date'][i] = YM[i]+D[i]
