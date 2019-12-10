@@ -8,6 +8,16 @@ from nltk.tokenize import word_tokenize
 def get_polarity(input_text):
     return str(TextBlob(input_text).polarity)
 
+#def pull tweets(OAUTH_CC,OAUTH_CS,Access_Token,Access_Token, THandle ):
+# call twitter to get feed return as dataframe
+# call wordcloud with dataframe return image
+# call sentement over time return image
+# call topic model with dataframe return image
+
+#    return (image, image, image)
+
+
+
 
 def get_subjectivity(input_text):
     return str(TextBlob(input_text).subjectivity)
