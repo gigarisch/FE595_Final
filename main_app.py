@@ -1,10 +1,27 @@
 from flask import Flask, request
 from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, \
     get_translate, get_stems, get_definition
+import cloud
+import cloud_viz
+import lda
+import lda_viz
+import SentOverTime
+#import services
+import test_data
+import tweet_processing
+#import twitter
+import matplotlib
+import pprint
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="saved")
 app.config["DEBUG"] = True
 
+# for testing
+sample_data = test_data.test
+tweets = tweet_processing.tweets_cleaner(str(sample_data))
+
+# end testing
 
 @app.errorhandler(404)
 def not_found(error):
@@ -15,46 +32,36 @@ def not_found(error):
 def home():
     errors = ""
     if request.method == "POST":
-        Sentence = None
-        Word1 = None
-        Word2 = None
+        THandle = None
+        OAUTH_CC = None
+        OAUTH_CS = None
+        Access_Token = None
+        Access_Token_Secret = None
         try:
-            Sentence = str(request.form["Sentence"])
+            THandle = str(request.form["THandle"])
         except:
-            errors += "<p>{!r} is invalid.</p>\n".format(request.form["Sentence"])
+            errors += "<p>{!r} is invalid.</p>\n".format(request.form["THandle"])
 
-        if Sentence is not None:
-            polarity2_result = get_polarity(Sentence)
-            subjectivity_result = get_subjectivity(Sentence)
-            PoS_Result = get_PoS(Sentence)
-            NP_Result = get_NP(Sentence)
-            spellcheck_result = get_spellcheck(Sentence)
-            language_result = get_detect_language(Sentence)
-            translated_result = get_translate(Sentence)
-            stem_result = get_stems(Sentence)
-            definition_result = get_definition(Sentence)
+        if THandle is not None:
+            #Tweet_result = get_tweets(THandle, OAUTH_CC, OAUTH_CS, Access_Token, Access_Token_Secret)
+            THandle = THandle
+            lda.LDA(tweets)
+            Sentence = " This is a placeholder till I remove all functions using the sentence"
+            base = os.getcwd()
+            lda_result = base + "/saved/lda_vis.html"
+
 
             return '''
                         <html>
                             <body>
                                 <h1> FE595 Midterm Project </h1><p>
                                 <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak </h2><p>
-                                <p>The Polarity Score is: {polarity2_result}</p>
-                                <p>The Subjectivity Score is: {subjectivity_result}</p>
-                                <p>The PoS Value is: {PoS_Result}</p>
-                                <p>The Noun Phrases are: {NP_Result}</p>
-                                <p>The Spellcheck results are: {spellcheck_result}</p>
-                                <p>The Language used is: {language_result}</p>
-                                <p>The In French that is: {translated_result}</p>
-                                <p>The stemmed words are: {stem_result}</p>
-                                <p>The definitions are: <p> {definition_result}</p>
+                                <p>The tweets for <h1> {THandle} </h1> have been pulled</p>
+                                <p>The LDA visualizations are <a href="{lda_result}"> Link </a> </p>
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
-                    '''.format(polarity2_result=polarity2_result, subjectivity_result=subjectivity_result,
-                               PoS_Result=PoS_Result, NP_Result=NP_Result, spellcheck_result=spellcheck_result,
-                               language_result=language_result, translated_result=translated_result,
-                               stem_result=stem_result, definition_result=definition_result)
+                    '''.format(THandle=THandle, lda_result=lda_result)
     return '''
         <html>
             <body>
@@ -62,8 +69,6 @@ def home():
                 <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak </h2><p>
                 <p> <h2>Enter your values: </h2></p> <br>
                 <form method="post" action=".">
-                    <p>Please enter a sentence or collection of words (To be removed) <input name = "Sentence" size = "130" /></p>
-                    <br>
                     <p>Please enter a Twitter Handle <input name = "THandle" size = "20" /></p>
                     <br>
                     <p>Please enter a OAUTH Consumer Key <input name = "OAUTH_CC" size = "80" /></p>
