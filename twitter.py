@@ -2,32 +2,29 @@ import os
 import tweepy as tw
 import pandas as pd
 
-#Authorization
-api = tw.API(auth, wait_on_rate_limit=True)
+#API
+def get_create_api():
+    consumer_key = os.getenv("CONSUMER_KEY")
+    consumer_secret = os.getenv("CONSUMER_SECRET")
+    access_token = os.getenv("ACCESS_TOKEN")
+    access_token_secret = os.getenv("ACCESS_TOKEN_SECRET")
 
-#Pull last 200 tweets
-tweets = api.user_timeline(screen_name='@realDonaldTrump',count=500)
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth, wait_on_rate_limit=True, 
+        wait_on_rate_limit_notify=True)
+	return api
 
-############Various Formats of Data############################
+#String
+def get_string(api, handle):
+	tweets=api.user_timeline(screen_name='@handle',count=200, tweet_mode='extended')
+	tweet=[tweet.full_text for tweet in tweets]
+	return tweet
 
-# Create an array
-tmp = []
-
-# tweet id, date/time, text 
-tweets_for_csv = [tweet.full_text for tweet in tweets]  # CSV file created  
-for j in tweets_for_csv:
-    # Appending tweets to the empty array tmp
-    print(j)
-    tmp.append(j)
-
-    # Printing the tweets 
-print(tmp) 
-
-#Tweet text in a string
-all_tweets = [tweet.full_text for tweet in tweets]
-
-#Create dataframe for ID, location, text and timestamp
-frame= [[tweet.user.screen_name, tweet.user.location, tweet.full_text,tweet.created_at]for tweet in tweets]
-
-tweet_frame = pd.DataFrame(data=frame,
+#Data table
+def get_table(api, handle):
+	tweets=api.user_timeline(screen_name='@handle',count=200, tweet_mode='extended')
+	frame= [[tweet.user.screen_name, tweet.user.location, tweet.full_text,tweet.created_at]for tweet in tweets]
+	tweet_frame = pd.DataFrame(data=frame,
                            columns=['user',"location","text","created_at"])
+	return tweet_frame
