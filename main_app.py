@@ -3,13 +3,14 @@ from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellc
     get_translate, get_stems, get_definition
 import cloud
 import cloud_viz
-import lda
-import lda_viz
+#import lda
+#import lda_viz
+import combinedLDA
 import SentOverTime
 #import services
 import test_data
 import tweet_processing
-#import twitter
+import twitter
 import matplotlib
 import pprint
 import os
@@ -39,25 +40,37 @@ def home():
         Access_Token_Secret = None
         try:
             THandle = str(request.form["THandle"])
+            OAUTH_CC = str(request.form["OAUTH_CC"])
+            OAUTH_CS = str(request.form["OAUTH_CS"])
+            Access_Token = str(request.form["Access_Token"])
+            Access_Token_Secret = str(request.form["Access_Token_Secret"])
         except:
             errors += "<p>{!r} is invalid.</p>\n".format(request.form["THandle"])
 
         if THandle is not None:
+            api = twitter.get_create_api2(OAUTH_CC, OAUTH_CS, Access_Token, Access_Token_Secret)
             #Tweet_result = get_tweets(THandle, OAUTH_CC, OAUTH_CS, Access_Token, Access_Token_Secret)
             THandle = THandle
-            lda.LDA(tweets)
+            tweets_str = twitter.get_string(api, THandle)
+            visoutput = combinedLDA.LDA(tweets_str)
+
             Sentence = " This is a placeholder till I remove all functions using the sentence"
             base = os.getcwd()
-            lda_result = base + "/saved/lda_vis.html"
+            lda_result = base + "/saved/lda_vis.html"\
+            #lda_result = "http://localhost:63342/FE595_Final/saved/lda_vis.html"
+            # lda_result = "http://127.0.0.1:8888/"
 
 
             return '''
                         <html>
                             <body>
                                 <h1> FE595 Midterm Project </h1><p>
-                                <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak </h2><p>
+                                <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Troianello, Colin Stipcak </h2><p>
                                 <p>The tweets for <h1> {THandle} </h1> have been pulled</p>
-                                <p>The LDA visualizations are <a href="{lda_result}"> Link </a> </p>
+                                <p>The LDA visualizations are <a href="file: //{lda_result}"> Link </a> </p>
+                                <p>The LDA map is  <iframe src="file: //{{ url_for('show_map') }}"></iframe> </p>
+                                <p>The LDA map is  <iframe src="http://localhost:63342/FE595_Final/saved/lda_vis.html"></iframe> </p>
+                                <p>The sentiment over time is <img src = 'saved/SentOverTime.jpg'>
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
@@ -66,7 +79,7 @@ def home():
         <html>
             <body>
                 <h1> FE595 Midterm Project </h1><p>
-                <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak </h2><p>
+                <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Troianello, Colin Stipcak </h2><p>
                 <p> <h2>Enter your values: </h2></p> <br>
                 <form method="post" action=".">
                     <p>Please enter a Twitter Handle <input name = "THandle" size = "20" /></p>
@@ -87,6 +100,9 @@ def home():
         </html>
     '''.format(errors=errors)
 
+@app.route('/maps/map.html')
+def show_map():
+    return flask.send_file('/saved/lda_vis.html')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

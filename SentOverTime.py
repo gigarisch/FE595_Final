@@ -43,6 +43,6 @@ def SentimentOverTime(tweets):
     ax.xaxis.set_major_formatter(date_form)
     ax.tick_params(labelsize=8)
     plt.xticks(rotation=60)
-    plt.savefig("/saved/SentOverTime.jpg")
-    plt.show()
+    plt.savefig("saved/SentOverTime.jpg")
+    #plt.show()
 

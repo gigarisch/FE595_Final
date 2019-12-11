@@ -9,7 +9,7 @@ import gensim
 from tweet_processing import tweets_cleaner
 
 def LDA(tweets,num_topics=4):
-    tokens = [tweets_cleaner(tweet) for tweet in tweets]
+    tokens = [tweets_cleaner(tweets) for tweets in tweets]
 
 
     id2word = corpora.Dictionary(tokens)
