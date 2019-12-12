@@ -1,16 +1,14 @@
+import matplotlib
 from flask import Flask, request
-#import cloud
-#import cloud_viz
+
 import combinedLDA
 import SentOverTime
-import test_data
-import tweet_processing
 import twitter
-import matplotlib
-import pprint
 import os
 import wordCloudSimple as wcs
+import pyLDAvis.gensim
 
+matplotlib.use('agg')
 app = Flask(__name__, static_folder="saved")
 app.config["DEBUG"] = True
 
@@ -42,13 +40,13 @@ def home():
             THandle = THandle
             tweets_str = twitter.get_string(api, THandle)
             tweets_frame = twitter.get_table(api, THandle)
-            visoutput = combinedLDA.LDA(tweets_str)
- #           wcs.createCloud(tweets_frame)
+            combinedLDA.LDA(tweets_str)
+            wcs.createCloud(tweets_frame)
             SentOverTime.SentimentOverTime(tweets_frame)
             base = os.getcwd()
-            lda_result = base + "/saved/lda_vis.html"
+            #lda_result = base + "/saved/lda_vis.html"
             #lda_result = "http://localhost:63342/FE595_Final/saved/lda_vis.html"
-            # lda_result = "http://127.0.0.1:8888/"
+            lda_result = "http://127.0.0.1:8888/"
 
 
             return '''
@@ -56,13 +54,20 @@ def home():
                             <body>
                                 <h1> FE595 Midterm Project </h1><p>
                                 <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Troianello, Colin Stipcak </h2><p>
-                                <p>The tweets for <h2> {THandle} </h2> have been pulled</p>
-                                <p>The LDA visualizations are <a href="file: //{lda_result}"> Link </a> </p>
-                                <p>The LDA map is  <iframe src="file: //{{ url_for('show_map') }}"></iframe> </p>
-                                <p>The LDA map is  <iframe src="http://localhost:63342/FE595_Final/saved/lda_vis.html"></iframe> </p>
-                                <p>The sentiment over time is <img src = 'saved/SentOverTime.jpg'> </p>
-                                <p>The Word Cloud the tweets create are <img src = 'saved/wordcloud.jpg'></p>
-                                <p><a href="/">Click here to run again</a>
+                                <p><h2>The tweets for <font face="verdana" color="blue">{THandle}</font> have been pulled and analized </h2></p>
+                                <p><h3> Word Cloud </h3></p>
+                                <p> <img src = 'saved/wordcloud.jpg'></p>
+                                <br>
+                                <br>
+                                <p><h3>Sentiment Over Time </h3></p>
+                                <p><img src = 'saved/SentOverTime.jpg'> </p>
+                                <br>
+                                <br>
+                                <p><h3> Topic Modeling </h3></p>
+                                <p> The topic modeling will open in a seperate browser tab, or if run on a web server will launch in the iFrame below </p>
+                                <p>The LDA Topic Model is </p>
+                                <p><iframe src="http://localhost:63342/FE595_Final/saved/lda_vis.html"></iframe></p>
+                                <p><h2><a href="/">Click here to run the App again with different values</a></h2>
                             </body>
                         </html>
                     '''.format(THandle=THandle, lda_result=lda_result)
@@ -86,14 +91,11 @@ def home():
                     <p><input type = "Submit" value = "Run the Application" /></p>
                     
                 </form>
-               <a href = "http://jesstraining.com/documentation.html"> Link to Documentation </a> 
+               <h2><a href = "http://jesstraining.com/documentation.html"> Link to Documentation </a></h2> 
             </body>
         </html>
     '''.format(errors=errors)
 
-@app.route('/maps/map.html')
-def show_map():
-    return flask.send_file('/saved/lda_vis.html')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
