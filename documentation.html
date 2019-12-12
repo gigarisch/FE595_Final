@@ -2,99 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Midterm Project Documentation</title>
+    <title>Final Project Documentation</title>
 </head>
 
 <body>
 
-<h1> FE595 Midterm project</h1>
-<h2> This project was composed by Brooke Crowe, Gordon Garisch, Jessica Nocerino Traoinello, Colin Stipcak</h2>
+<h1> FE595 Final project</h1>
+<h2> This project was composed by Brooke Crowe, Gordon Garisch, Jessica Nocerino Troianello, Colin Stipcak</h2>
 <ul>
-    <li><a href="#GetPolarity">Polarity</a></li>
-    <li><a href="#GetSubjectivity">Subjectivity</a></li>
-    <li><a href="#GetPoS">PoS</a></li>
-    <li><a href="#GetNounPhrases">Noun Phrases</a></li>
-    <li><a href="#Spellcheck">Spellcheck</a></li>
-    <li><a href="#GetLanguage">Language Dectection</a></li>
-    <li><a href="#Translate">Translation to French</a></li>
-    <li><a href="#Stemming">Word Stemming</a></li>
-    <li><a href="#Definitions">Definition</a></li>
+    <li><a href="#TwitterFeed">Polarity</a></li>
+    <li><a href="#SentOverTime">Subjectivity</a></li>
+    <li><a href="#getLDA">PoS</a></li>
+    <li><a href="#WordCloud">Noun Phrases</a></li>
 </ul>
 
 
-<a name = 'GetPolarity'></a>
-    <h2>Polarity Documentation</h2>
-    This function returns the Polarity score, between -1.0 to +1.0 <br>
-    This is accomplished by using the textblob polarity function<br>
-    <a href="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob.polarity"> Link to TextBlob Polarity</a> <br>
-    Function Execution: <i>TextBlob(input_text).polarity</i>
-</a>
-    <br><p>
-    <a name = 'GetSubjectivity'></a>
-    <h2>Subjectivity Documentation</h2>
-    This function returns the Subjectivity score, between 0.0 to +1.0, with 0.0 being objective and 1.0 being subjective <br>
-    This is accomplished by using the textblob subjectivity function<br>
-    <a href="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob.subjectivity"> Link to TextBlob Subjectivity</a> <br>
-    Function Execution: <i>TextBlob(input_text).subjectivity</i>
-</a>
-    <br><p>
-<a name = 'GetPoS'>
-    <h2>PoS Documentation</h2></a>
-    This function returns the part of speech for each word provided <br>
-    This is accomplished loop and the Textblob pos_tags function<br>
-    <a href="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob.pos_tags"> Link to TextBlob pos_tags</a> <br>
-    Function Execution: <i>TextBlob(input_text).pos_tags]</i>
-</a>
-    <br><p>
-    <a name = 'GetNounPhrases'></a>
-    <h2>Noun Phrase Documentation</h2>
-    This function returns the noun phrases found in the string provided <br>
-    This is accomplished by using the Textblob Noun_phrases function<br>
-    <a href="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob.noun_phrases"> Link to TextBlob noun_phrasess</a> <br>
-    Function Execution: <i>TextBlob(input_text).noun_phrases</i>
-</a>
-    <br><p>
-    <a name = 'Spellcheck'></a>
-    <h2>Spellcheck Documentation</h2>
-    This function attempts to correct the spelling based on a set of rules. <br>
-    This is accomplished by using the textblob correct function<br>
-    <a href="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob.correct"> Link to TextBlob correct</a> <br>
-    Function Execution: <i>TextBlob(input_text).correct()</i>
-</a>
-    <br><p>
-    <a name = 'GetLanguage'></a>
-    <h2>Language Detection Documentation</h2>
-    This function indicates what language the text is. <br>
-    This is accomplished by using the textblob detect_languange function<br>
-    <a href="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.TextBlob.detect_language"> Link to TextBlob detect_languange</a> <br>
-    Function Execution: <i>TextBlob(input_text).detect_language()</i>
-</a>
-    <br><p>
-    <a name = 'Translate'></a>
-    <h2>Translation Documentation</h2>
-    This function performs translation to the language of choice, in this implementation it is French <br>
-    If a translation is unavailable, the following message is displayed "No translation available"
-    This is accomplished by using the textblob Translate function<br>
-    <a href ="https://textblob.readthedocs.io/en/dev/quickstart.html#translation-and-language-detection"> Link to TextBlob Translation and Language Detection</a> <br>
-    Function Execution: <i>TextBlob(input_text).translate(to='fr')</i>
+<a name = 'TwitterFeed'></a>
+    <h2>Twitter Feed Documentation</h2>
+    This function calls out to twitter to get the last tweets for a user provided twitter handle <br>
+    It has functions to create OAUTH connection with user provided values and create a string and dataframe of the tweets <br>
+    <a href="https://www.tweepy.org/"> Link to Tweepy Python Page</a> <br>
 
 </a>
     <br><p>
-    <a name = 'Stemming'></a>
-    <h2>Stemming Documentation</h2>
-   This function stems the words of all of the words entered <br>
-    This is accomplished by using the textblob stem function<br>
-    <a href ="https://textblob.readthedocs.io/en/dev/_modules/textblob/blob.html#Word.stem"> Link to TextBlob stem </a> <br>
-    Function Execution: <i>PorterStemmer.stem(input_text)</i>
+    <a name = 'SentOverTime'></a>
+    <h2>Sentement over time Documentation</h2>
+    This function returns a plot of the tweets sentiment over time <br>
+    This is accomplished with MatPlotLib and TextBlob sentement functions<br>
+    <a href="https://buildmedia.readthedocs.org/media/pdf/textblob/dev/textblob.pdf"> Link to TextBlob Documentation</a> <br>
+
 </a>
     <br><p>
-    <a name = 'Definitions'></a>
-    <h2>Definition Documentation</h2>
-    This function defines each word of the sentence entered <br>
-    If a definition is unavailable, the following message is displayed "No translation available"
-    This is accomplished by using the textblob defininition function<br>
-    <a href ="https://textblob.readthedocs.io/en/dev/api_reference.html#textblob.blob.Word.define"> Link to TextBlob Definition </a> <br>
-    Function Execution: <i>(Word(x).definitions)</i>
+<a name = 'GetLDA'>
+    <h2>LDA Documentation</h2></a>
+    This function does topic Modeling on the tweets using the pyLDAvis <br>
+    This is accomplished usign functionality of the pyLDAvis topic visualization medels and takes a string inputn<br>
+    <a href="https://pyldavis.readthedocs.io/en/latest/modules/API.html"> Link to pyLDAvis</a> <br>
+</a>
+    <br><p>
+    <a name = 'WordCloud'></a>
+    <h2>WordCloud Documentation</h2>
+    This function returns a wordcloud of the tweets <br>
+    This is accomplished by using the Textblob Noun_phrases function<br>
+    <a href="https://pypi.org/project/wordcloud/"> Link to WordCloud documentation</a> <br>
+
+</a>
 
 
 

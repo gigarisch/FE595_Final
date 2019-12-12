@@ -1,28 +1,18 @@
 from flask import Flask, request
-from services import get_polarity, get_subjectivity, get_PoS, get_NP, get_spellcheck, get_detect_language, \
-    get_translate, get_stems, get_definition
-import cloud
-import cloud_viz
-#import lda
-#import lda_viz
+#import cloud
+#import cloud_viz
 import combinedLDA
 import SentOverTime
-#import services
 import test_data
 import tweet_processing
 import twitter
 import matplotlib
 import pprint
 import os
+import wordCloudSimple as wcs
 
 app = Flask(__name__, static_folder="saved")
 app.config["DEBUG"] = True
-
-# for testing
-sample_data = test_data.test
-tweets = tweet_processing.tweets_cleaner(str(sample_data))
-
-# end testing
 
 @app.errorhandler(404)
 def not_found(error):
@@ -49,14 +39,14 @@ def home():
 
         if THandle is not None:
             api = twitter.get_create_api2(OAUTH_CC, OAUTH_CS, Access_Token, Access_Token_Secret)
-            #Tweet_result = get_tweets(THandle, OAUTH_CC, OAUTH_CS, Access_Token, Access_Token_Secret)
             THandle = THandle
             tweets_str = twitter.get_string(api, THandle)
+            tweets_frame = twitter.get_table(api, THandle)
             visoutput = combinedLDA.LDA(tweets_str)
-
-            Sentence = " This is a placeholder till I remove all functions using the sentence"
+ #           wcs.createCloud(tweets_frame)
+            SentOverTime.SentimentOverTime(tweets_frame)
             base = os.getcwd()
-            lda_result = base + "/saved/lda_vis.html"\
+            lda_result = base + "/saved/lda_vis.html"
             #lda_result = "http://localhost:63342/FE595_Final/saved/lda_vis.html"
             # lda_result = "http://127.0.0.1:8888/"
 
@@ -66,11 +56,12 @@ def home():
                             <body>
                                 <h1> FE595 Midterm Project </h1><p>
                                 <h2> Brooke Crowe, Gordon Garisch, Jessica Nocerino Troianello, Colin Stipcak </h2><p>
-                                <p>The tweets for <h1> {THandle} </h1> have been pulled</p>
+                                <p>The tweets for <h2> {THandle} </h2> have been pulled</p>
                                 <p>The LDA visualizations are <a href="file: //{lda_result}"> Link </a> </p>
                                 <p>The LDA map is  <iframe src="file: //{{ url_for('show_map') }}"></iframe> </p>
                                 <p>The LDA map is  <iframe src="http://localhost:63342/FE595_Final/saved/lda_vis.html"></iframe> </p>
-                                <p>The sentiment over time is <img src = 'saved/SentOverTime.jpg'>
+                                <p>The sentiment over time is <img src = 'saved/SentOverTime.jpg'> </p>
+                                <p>The Word Cloud the tweets create are <img src = 'saved/wordcloud.jpg'></p>
                                 <p><a href="/">Click here to run again</a>
                             </body>
                         </html>
